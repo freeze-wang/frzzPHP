@@ -59,7 +59,7 @@ function startMVC($request, $response){
     $_FILES = $request->files??[];
     $_SERVER = array_change_key_case($request->server??[],CASE_UPPER); 
   
-    require_once "frzz.php";    
+    require_once "./public/frzz.php";   
     $response->write("startMVC\n");  
     $response->write(frzzStart());    
 
