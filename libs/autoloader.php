@@ -46,6 +46,26 @@ if(!function_exists("Autoloader")){
             return true;
         }
 
+		 // Path to libs class file
+        $libpath = 'libs/' . $class . '.class.php';
+		// If the file doesn't exist it might be a child class
+        if (!file_exists($basedir . strtolower($filepath)))
+        {
+            // Use first part of camelcased class name as file name
+            preg_match_all('/[A-Z]+[^A-Z]*/', $class, $parts);
+
+            if (isset($parts[0][0]))
+            {
+                $class = $parts[0][0];
+                $filepath = 'libs/' . $class .'.class.php';
+            }
+        }
+		
+        if (file_exists($basedir . strtolower($filepath)))
+        {
+            require $basedir. strtolower($filepath);
+            return true;
+        }
         return false;
     }
 }
